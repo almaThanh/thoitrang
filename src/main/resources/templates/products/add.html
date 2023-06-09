@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:replace="~{layout :: link-css}">
+
+    <title>Thêm Sản Phẩm</title>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+    <h1>Thêm Sản Phẩm</h1>
+    <form th:action="@{/products/addProducts}" th:object="${products}" method="post">
+        <div class="col-6 mb-3">
+            <label class="form-label" for="title">Title:</label>
+            <input class="form-control" type="text" th:field="*{title}" id="title">
+            <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+        </div>
+
+        <div class="col-6 mb-3">
+            <label class="form-label" for="price">Price:</label>
+            <input class="form-control" type="text" th:field="*{price}" id="price">
+            <span class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="description">Description: </label>
+            <input class="form-control" type="text" th:field="*{description}" id="description">
+        </div>
+
+        <div class="col-6 mb-3">
+            <label class="form-label" for="image">Image:</label>
+            <input class="form-control" type="file" th:field="*{image}" id="image">
+            <span class="text-danger" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
+        </div>
+
+        <div class="col-6 mb-3">
+            <label class="form-label" for="publish_date">Publish Date:</label>
+            <input class="form-control" type="datetime-local" th:field="*{publish_date}" id="publish_date">
+            <span class="text-danger" th:if="${#fields.hasErrors('publish_date')}" th:errors="*{publish_date}"></span>
+        </div>
+
+        <div class="col-6 mb-3">
+            <label class="form-label" for="last_update_time">Last Update Date:</label>
+            <input class="form-control" type="datetime-local" th:field="*{last_update_time}" id="last_update_time">
+            <span class="text-danger" th:if="${#fields.hasErrors('last_update_time')}" th:errors="*{last_update_time}"></span>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="produces">Produces:</label>
+            <select class="form-control" id="produces" name="produces.id">
+                <option value="">--- Chọn nhà sản xuất ------</option>
+                <option th:each="produce : ${produces}" th:value="${produce.id}" th:text="${produce.name}"></option>
+            </select>
+            <span class="text-danger" th:if="${#fields.hasErrors('produces')}" th:errors="*{produces}"></span>
+        </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="category">Category:</label>
+                <select class="form-control" id="category" name="category.id">
+                    <option value="">--- Chọn loại sản phẩm ------</option>
+                    <option th:each="category :${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+                </select>
+                <span class="text-danger" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
+            </div>
+            <input type="submit" value="Save" class="btn btn-primary">
+    </form>
+    <br>
+    <a th:href="@{/products}">Back to list</a>
+</div>
+<th:block th:replace="layout :: footer"></th:block>
+</body>
+</html>

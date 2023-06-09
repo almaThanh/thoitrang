@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DANH SÁCH SẢN PHẨM THỜI TRANG</title>
+    <th:block th:replace="layout :: link-css"></th:block>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+    <h1 th:text=${title}></h1>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Publish_date</th>
+            <th>Last_update_time</th>
+            <th>Category</th>
+            <th>Produces</th>
+        </tr>
+        <tr th:each="products : ${products}">
+            <td th:text="${products.id}"></td>
+            <td th:text="${products.title}"></td>
+            <td th:text="${products.price}"></td>
+            <td th:text="${products.description}"></td>
+            <td th:text="${products.image}"></td>
+            <td th:text="${products.publish_date}"></td>
+            <td th:text="${products.last_update_time}"></td>
+           <td th:text="${products.category.name}"></td>
+            <td th:text="${products.produces}"></td>
+            <td>
+                <a th:href="@{/products/edit/{id}(id=${products.id})}" class="btn btn-success">Sửa </a> |
+                <a th:href="@{/products/delete/{id}(id=${products.id})}"
+                   onclick="return confirm('Bạn có chắc xóa Sản Phẩm này không?')" class="btn btn-danger">Xóa</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<th:block th:replace="layout :: footer"></th:block>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: page_head('Categories - Shopme Admin')"/>
+<body>
+<div class="container-fluid">
+	<div th:replace="navigation::menu"></div>
+	<div>
+		<h1 class="text-center">Manage Categories</h1>
+			<a th:href="@{/categories/new}" class="fas fa-user-plus fa-2x icon-dark mr-2"></a>
+			&nbsp;|&nbsp;
+			<a th:href="@{/categories/export/csv}"class="fas fa-file-csv fa-2x icon-dark mr-2"></a>
+			&nbsp;|&nbsp;
+			<a th:href="@{/categories/export/excel}"class="fas fa-file-excel fa-2x icon-dark mr-2"></a>
+	</div>
+	<div th:if="${message != null}" class="alert alert-success text-center">
+		[[${message}]]
+	</div>
+	
+	<div>
+		<form th:action="@{/categories/page/1}" class="form-inline m-3">
+			<input type="hidden" name="sortField" th:value="${sortField}"/>
+			<input type="hidden" name="sortDir" th:value="${sortDir}"/>
+			Filter:&nbsp;
+			<input type="search" name="keyword" th:value="${keyword}" class="form-control" required/>
+			&nbsp;&nbsp;
+			<button type="submit" value="Search" class="btn btn-primary">
+				<i class="fas fa-search  icon-dark"></i>
+			</button>
+			&nbsp;&nbsp;
+			<button type="button" value="Clear" class="btn btn-secondary " onclick="clearFilter()" >
+				<i class="fas fa-eraser"></i>
+			</button>
+		</form>
+	</div>
+	<div class="full-details">
+		<table class="table table-bordered table-striped table-hover table-responsive-xl">
+			<thead class="thead-dark">
+				<tr>
+					<th class="hideable-column">
+						<th th:replace="fragments::column_link('categoryid','Category ID','tag')"/>
+					</th>
+					<th>
+						Category Image
+						
+					</th>
+						<th th:replace="fragments::column_link('name','Category Name','none')"/>
+						<th th:replace="fragments::column_link('alias','Alias','none')"/>
+						<th th:replace="fragments::column_link('enabled','Enabled','none')"/>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${listCategories}">
+					<td class="hideable-column">[[${category.categoryid}]]</td>
+					<td>
+						
+						<span th:if="${category.image==null}" class="fas fa-portrait fa-2x"></span>
+						<img  th:if="${category.image!=null}" th:src="@{${category.PhotosImagePath}}" style="width: 100px;height: 120px;"  />
+						</td>
+					<td class="hideable-column">[[${category.name}]]</td>
+					<td class="hideable-column">[[${category.alias}]]</td>
+					<td class="hideable-column">
+						<a th:if="${category.enabled==true}" class="fas fa-check-circle fa-2x icon-green" th:href="@{'/categories/'+${category.categoryid}+'/enabled/false'}"title="Disable this user"></a>
+						<a th:if="${category.enabled==false}" class="fas fa-circle fa-2x icon-dark" th:href="@{'/categories/'+${category.categoryid}+'/enabled/true'}" title="Enable this user"></a>
+					</td>
+					<td class="hideable-column">
+						<a class="fas fa-edit fa-2x icon-green" th:href="@{'/categories/edit/'+${category.categoryid}}" title="Edit this user"></a>
+						&nbsp;
+						<a  class="fas fa-trash fa-2x icon-dark link-delete" th:href="@{'/categories/delete/'+${category.categoryid}}"  title="Delete this user"></a>
+					</td>
+				</tr>
+				
+			</tbody>
+		</table>
+	</div>
+	<div class="less-details">
+		<div th:each="user : ${listUsers}" class="row">
+			<div class="col">
+				<span th:if="${category.image==null}" class="fas fa-portrait fa-2x"></span>
+				<img  th:if="${category.image!=null}" th:src="@{${category.PhotosImagePath}}" style="width: 100px;height: 120px;"  />
+			</div>
+			<div class="col">
+				<div>[[${category.name}]]</div>
+				
+				<div class="mt-2">
+					<a th:if="${category.enabled==true}" class="fas fa-check-circle fa-2x icon-green" th:href="@{'/categories/'+${category.categoryid}+'/enabled/false'}"title="Disable this user"></a>
+					<a th:if="${category.enabled==false}" class="fas fa-circle fa-2x icon-dark" th:href="@{'/categories/'+${category.categoryid}+'/enabled/true'}" title="Enable this user"></a>
+					&nbsp;
+					<a class="fas fa-edit fa-2x icon-green" th:href="@{'/categories/edit/'+${category.categoryid}}" title="Edit this user"></a>
+					&nbsp;
+					<a  class="fas fa-trash fa-2x icon-dark link-delete" th:href="@{'/categories/delete/'+${category.categoryid}}"  title="Delete this user"></a>
+					
+				</div>
+			</div>	
+			<div>&nbsp;</div>
+		</div>
+	</div>
+	<div class="text-center m-1" th:if="${totalItems>0}">
+		<span>Showing users # [[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
+	</div>
+	<div class="text-center m-1" th:unless="${totalItems>0}">
+		<span>No users found</span>
+	</div>
+	<div th:if="${totalPages>1}">
+		<nav >
+  			<ul class="pagination justify-content-center">
+    			<li th:class="${currentPage>1? 'page-item':'page-item disabled'}">
+					<a th:replace="fragments::page_link(1,'First')"></a>
+				</li>
+				&nbsp;
+				<li th:class="${currentPage>1? 'page-item':'page-item disabled'}">
+					<a th:replace="fragments::page_link(${currentPage-1},'Previous')"></a> 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             	        
+				</li>
+				&nbsp;
+				<li th:class="${currentPage!=i? 'page-item':'page-item active'}" 
+					th:each="i:${#numbers.sequence(1,totalPages)}">
+					<a th:replace="fragments::page_link(${i},${i})"></a>
+				</li>
+				&nbsp;
+				<li th:class="${currentPage<totalPages ? 'page-item':'page-item disabled'}">
+					<a th:replace="fragments::page_link(${currentPage+1},'Next')"></a>
+				</li>
+				&nbsp;
+				<li th:class="${currentPage<totalPages ? 'page-item':'page-item disabled'}">
+					<a th:replace="fragments::page_link(${totalPages},'Last')"></a>
+				</li>
+    			
+  			</ul>
+		</nav>
+	</div>
+	<div th:replace="fragments::footer"></div>
+</div>
+<script type="text/javascript">
+	function clearFilter(){
+		window.location="[[@{/categories}]]";
+	}
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+package com.shopme.admin.category;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.data.domain.Pageable; 
+
+import com.shopme.common.entity.Category;
+
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+@Rollback(false)
+public class CategoryRepositoryTest {
+
+	@Autowired
+	private CategoryRepository categoryRepo;
+	
+	@Test
+	public void testCreateRootCategory() {
+		Category category = new Category("Phụ Kiện");
+		Category saveCategory = categoryRepo.save(category);
+		assertThat(saveCategory.getCategoryid()).isGreaterThan(0);
+	}
+	
+	@Test
+	public void testCreateSubCategory() {
+		/*Category parent = new Category(1);
+		Category AoTapGymNam = new Category("Áo Tập Gym Nam",parent);
+		Category AoThun = new Category("Áo Thun",parent);
+		Category AoPolo = new Category("Áo Polo",parent);
+		Category AoBaLoTankTop = new Category("Áo Ba Lỗ/ TankTop",parent);
+		Category AoKhoacNam = new Category("Áo Khoác Nam",parent);
+		Category QuanTapGymNam = new Category("Quần Tập Gym Nam",parent);
+		Category QuanDai = new Category("Quần Dài",parent);
+		Category QuanShort = new Category("Quần Short",parent);
+		Category QuanLot = new Category("Quần Lót",parent);
+		Category DoBoTapGymNam = new Category("Đồ Bộ Tập Gym Nam",parent);
+		
+		categoryRepo.saveAll(List.of(AoTapGymNam,AoThun,AoPolo,AoBaLoTankTop,AoKhoacNam,QuanTapGymNam,QuanDai,QuanShort,QuanLot,DoBoTapGymNam));*/
+		
+		
+	}
+	
+	@Test
+	public void testGetCategory() {
+		Category category = categoryRepo.findById(1).get();
+		System.out.println(category.getName());
+		Set<Category> children = category.getChildren();
+		for(Category suCategory : children) {
+			System.out.println(suCategory.getName());
+		}
+		assertThat(children.size()).isGreaterThan(0);
+	}
+	@Test
+	public void testPrintHierarchicalCategories() {
+		Iterable<Category> categories =categoryRepo.findAll();
+		for(Category category :categories) {
+			System.out.println(category.getName());
+			Set<Category> children = category.getChildren();
+			for(Category suCategory : children) {
+				System.out.println("--"+suCategory.getName());
+			}
+		}
+	}
+}

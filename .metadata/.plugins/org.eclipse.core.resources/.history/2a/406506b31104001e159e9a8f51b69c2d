@@ -1,0 +1,32 @@
+package com.shopme.admin.brand;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.Rollback;
+
+import com.shopme.admin.category.CategoryRepository;
+import com.shopme.common.entity.Brand;
+import com.shopme.common.entity.Category;
+
+@DataJpaTest(showSql=false)
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+@Rollback(false)
+public class BrandRepositoryTest {
+	@Autowired
+	private BrandRepository brandRepo;
+	
+	@Test
+	public void testCreaterBrand1() {
+		Category AoTapGymNam = new Category(5);
+		Brand Nike = new Brand("Nike");
+		Nike.getCategories().add(AoTapGymNam);
+		Brand saverBrand = brandRepo.save(Nike);
+		assertThat(saverBrand).isNotNull();
+		assertThat(saverBrand.getBrandid()).isGreaterThan(0);
+	}
+}

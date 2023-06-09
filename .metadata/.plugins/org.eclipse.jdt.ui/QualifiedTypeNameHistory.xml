@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.apache.poi.xssf.usermodel.XSSFWorkbook"/>
+    <fullyQualifiedTypeName name="org.apache.poi.xssf.usermodel.XSSFSheet"/>
+    <fullyQualifiedTypeName name="org.apache.poi.xssf.usermodel.XSSFRow"/>
+    <fullyQualifiedTypeName name="org.apache.poi.xssf.usermodel.XSSFCellStyle"/>
+    <fullyQualifiedTypeName name="org.apache.poi.xssf.usermodel.XSSFFont"/>
+    <fullyQualifiedTypeName name="org.apache.poi.xssf.usermodel.XSSFCell"/>
+    <fullyQualifiedTypeName name="org.apache.poi.ss.usermodel.CellStyle"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+    <fullyQualifiedTypeName name="ch.qos.logback.core.model.Model"/>
+    <fullyQualifiedTypeName name="com.shopme.admin.user.UserController"/>
+    <fullyQualifiedTypeName name="org.springframework.security.config.annotation.web.oauth2.login.UserInfoEndpointDsl"/>
+    <fullyQualifiedTypeName name="com.shopme.admin.security.ShopmeUserDetails"/>
+    <fullyQualifiedTypeName name="org.springframework.security.core.annotation.AuthenticationPrincipal"/>
+    <fullyQualifiedTypeName name="com.shopme.admin.user.UserNotFoundException"/>
+    <fullyQualifiedTypeName name="org.slf4j.Logger"/>
+    <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
+    <fullyQualifiedTypeName name="java.lang.Boolean"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.OneToOne"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.OneToMany"/>
+    <fullyQualifiedTypeName name="com.shopme.admin.PagingAndSortingRepository"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="org.springframework.data.repository.PagingAndSortingRepository"/>
+    <fullyQualifiedTypeName name="java.util.HashSet"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.ManyToMany"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.JoinTable"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.JoinColumn"/>
+    <fullyQualifiedTypeName name="com.shopme.admin.brand.BrandRepository"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.Brand"/>
+    <fullyQualifiedTypeName name="com.shopme.admin.category.CategoryRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="com.shopme.admin.category.CategoryService"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase"/>
+    <fullyQualifiedTypeName name="org.springframework.test.annotation.Rollback"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.Test"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Entity"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.util.Set"/>
+    <fullyQualifiedTypeName name="java.lang.Iterable"/>
+    <fullyQualifiedTypeName name="com.shopme.common.entity.Category"/>
+</qualifiedTypeNameHistroy>

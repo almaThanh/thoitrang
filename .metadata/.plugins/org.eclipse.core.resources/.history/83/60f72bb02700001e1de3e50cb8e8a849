@@ -1,0 +1,24 @@
+$(document).ready(function(){
+		$("#logoutLink").on("click",function(e){
+			e.preventDefault();
+			document.logoutForm.submit();
+		});
+		customizeDropDownMenu();
+	});
+	
+	
+function customizeDropDownMenu(){
+	$(".nav .dropdown").hover(
+		function(){
+			$(this).children('.navmain').slideDown(500);
+			//$(this).find('.dropdown-menu').first().stop(true,true).delay(250).slideDown();
+		},
+		function(){
+			$(this).children('.navmain').slideUp(500);
+			//$(this).find('.dropdown-menu').first().stop(true,true).delay(100).slideUp();
+		}
+	);
+	$(".dropdown > a").click(function(){
+		location.href=this.href;
+	});
+}
